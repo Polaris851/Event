@@ -1,7 +1,7 @@
 package com.event.api.service;
 
 import com.event.api.model.coupon.Coupon;
-import com.event.api.model.coupon.CouponResquestDTO;
+import com.event.api.model.coupon.CouponRequestDTO;
 import com.event.api.model.event.Event;
 import com.event.api.repositories.CouponRepository;
 import com.event.api.repositories.EventRepository;
@@ -19,7 +19,7 @@ public class CouponService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Coupon addCouponToEvent(UUID eventId, CouponResquestDTO data) {
+    public Coupon addCouponToEvent(UUID eventId, CouponRequestDTO data) {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 
