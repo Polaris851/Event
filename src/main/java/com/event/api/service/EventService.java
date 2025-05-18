@@ -63,8 +63,7 @@ public class EventService {
         ).stream().toList();
     }
 
-    public List<EventResponseDTO> getFilterEvents(int page, int size, String title, String city, String uf, Date startDate, Date endDate) {
-        title = (title == null) ? "" : title;
+    public List<EventResponseDTO> getFilterEvents(int page, int size, String city, String uf, Date startDate, Date endDate) {
         city = (city == null) ? "" : city;
         uf = (uf == null) ? "" : uf;
         startDate = startDate == null ? new Date() : startDate;
@@ -72,7 +71,7 @@ public class EventService {
 
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Event> eventsPage = repository.findFilteredEvent(title, city, uf, startDate, endDate, pageable);
+        Page<Event> eventsPage = repository.findFilteredEvent(city, uf, startDate, endDate, pageable);
         return eventsPage.map(event -> new EventResponseDTO(
                         event.getId(),
                         event.getTitle(),

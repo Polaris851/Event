@@ -42,13 +42,12 @@ public class EventController {
     @GetMapping("/filter")
     public ResponseEntity<List<EventResponseDTO>> getFilterEvents(@RequestParam(defaultValue = "0") int page,
                                                                   @RequestParam(defaultValue = "10") int size,
-                                                                  @RequestParam(required = false) String title,
                                                                   @RequestParam(required = false) String city,
                                                                   @RequestParam(required = false) String uf,
                                                                   @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date startDate,
                                                                   @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date endDate
                                                                 ) {
-        List<EventResponseDTO> events = eventService.getFilterEvents(page, size, title, city, uf, startDate, endDate);
+        List<EventResponseDTO> events = eventService.getFilterEvents(page, size, city, uf, startDate, endDate);
         return  ResponseEntity.ok(events);
     }
 }
